@@ -1,0 +1,6 @@
+{
+  "name": "Contractor Invoice Generator",
+  "description": "A simple and fast invoice generator designed for contractors to create, save, export, and email professional invoices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

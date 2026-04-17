@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script>
+      // Suppress specific annoying fetch getter errors caused by browser extensions or polyfills
+      window.addEventListener('error', function(e) {
+        if (e.message && e.message.includes('Cannot set property fetch')) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        if (e.reason && e.reason.message && e.reason.message.includes('Cannot set property fetch')) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
+      });
+
+      (function() {
+        try {
+          // In some environments, Window.prototype.fetch is a getter-only property.
+          // Doing window.fetch = ... naturally throws a TypeError.
+          // By defining 'fetch' directly on the 'window' object, we intercept polyfills.
+          const originalFetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return originalFetch;
+            },
+            set: function(val) {
+              console.warn("An interceptor tried to set fetch to:", val);
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          console.warn("Could not redefine fetch directly on window:", e);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
