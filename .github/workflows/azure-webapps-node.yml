@@ -1,0 +1,46 @@
+            - name: Create Cloud Deploy Release
+  # You may pin to the exact commit or the version.
+  # uses: google-github-actions/create-cloud-deploy-release@dfd6e1dfc54c2171b42b932a4dc713d9361784c1
+  uses: google-github-actions/create-cloud-deploy-release@v1
+  with:
+    # The name of the release.
+    name: 
+    # The delivery pipeline to use for the release.
+    delivery_pipeline: 
+    # Region in which the delivery pipeline can be found.
+    region: # optional
+    # The location of the files to be included in the release.
+    source: # optional
+    # Path to a Skaffold output file containing the details of the image(s) to be released.
+    build_artifacts: # optional
+    # The images to be released.
+    images: # optional
+    # Prevent the release being deployed to the first target in the delivery pipeline.
+    disable_initial_rollout: # optional
+    # A directory in Google Cloud Storage to copy the source used for staging the build.
+    gcs_source_staging_dir: # optional
+    # Path of the skaffold file absolute or relative to the source directory.
+    skaffold_file: # optional
+    # Add additional annotations to the release.
+    annotations: # optional
+    # Add additional labels to the release.
+    labels: # optional
+    # Include a description of the release.
+    description: # optional
+    # Additional parameters to supply at release creation time.
+    deploy_parameters: # optional
+    # The Google Cloud Project ID. If unset, this is inherited from the environment.
+    project_id: # optional
+    # Space separated list of other Cloud Deploy flags, examples can be found:
+https://cloud.google.com/sdk/gcloud/reference/deploy/releases/create#FLAGS
+Example: '--from-k8s-manifest=manifest.yaml --skaffold-version=skaffold_preview'
+    flags: # optional
+    # Version of the Cloud SDK to install. If unspecified or set to "latest",
+the latest available gcloud SDK version for the target platform will be
+installed. Example: "290.0.1".
+    gcloud_version: # optional
+    # Version of the Cloud SDK components to install and use. If unspecified, the latest
+or released version will be used. This is the equivalent of running
+'gcloud alpha run' or 'gcloud beta run'. Valid values are `alpha` or `beta`.
+    gcloud_component: # optional
+          
